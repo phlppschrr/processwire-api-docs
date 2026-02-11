@@ -1,0 +1,25 @@
+# $templates->getParentPages(Template $template, $checkAccess = false, $maxStatus = 0): PageArray
+
+Source: `wire/core/Templates.php`
+
+Return all possible parent pages for the given template, if predefined
+
+## Usage
+
+~~~~~
+// basic usage
+$items = $templates->getParentPages($template);
+
+// usage with all arguments
+$items = $templates->getParentPages(Template $template, $checkAccess = false, $maxStatus = 0);
+~~~~~
+
+## Arguments
+
+- `$template` `Template`
+- `$checkAccess` (optional) `bool` Specify true to exclude parent pages that user doesn't have access to add pages to (default=false)
+- `$maxStatus` (optional) `int` Max allowed `Page::status*` constant (default=0 which means not applicable). Since 3.0.138
+
+## Return value
+
+- `PageArray`

@@ -1,0 +1,31 @@
+# $functionsAPI->user($key = '', $value = null): User|mixed
+
+Source: `wire/core/FunctionsAPI.php`
+
+Get the currently logged in user ($user API variable as a function)
+
+This function behaves the same as the `$user` API variable, though does support
+optional shortcut arguments for getting or setting values.
+
+## Usage
+
+~~~~~
+// basic usage
+$user = $functionsAPI->user();
+
+// usage with all arguments
+$user = $functionsAPI->user($key = '', $value = null);
+~~~~~
+
+## Arguments
+
+- `$key` (optional) `string` Optional property to get or set
+- `$value` (optional) `null` Optional value to set
+
+## Return value
+
+- `User|mixed`
+
+## See Also
+
+- User

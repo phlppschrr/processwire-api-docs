@@ -1,0 +1,12 @@
+# ProcessWire API Docs (Unofficial)
+
+Unofficial, auto-generated ProcessWire API documentation in an LLM-friendly Markdown format.
+
+The docs are generated from ProcessWire source code API docs for the ProcessWire CMS/CMF.
+
+## Layout
+
+- `api-docs/`: Full generated API reference (from `docs/api-full`)
+- `_processwire_version.json`: Version and build metadata
+- `LICENSE`
+- `NOTICE`

@@ -1,0 +1,69 @@
+# $inputfield->processInput(WireInputData $input): $this
+
+Source: `wire/core/Inputfield.php`
+
+Process input for this Inputfield directly from the POST (or GET) variables
+
+This method should pull the value from the given `$input` argument, sanitize/validate it, and
+populate it to the `value` attribute of this Inputfield.
+
+Inputfield modules should implement this method if the built-in one here doesn't solve their need.
+If this one does solve their need, then they should add any additional sanitization or validation
+to the `Inputfield::setAttribute('value', $value)` method to occur when given the `value` attribute.
+
+## Usage
+
+~~~~~
+// basic usage
+$result = $inputfield->processInput($input);
+
+// usage with all arguments
+$result = $inputfield->processInput(WireInputData $input);
+~~~~~
+
+## Arguments
+
+- `$input` `WireInputData` User input where value should be pulled from (typically `$input->post`)
+
+## Return value
+
+- `$this`
+
+## Hooking
+
+- Hookable method name: `processInput`
+- Implementation: `___processInput`
+- Hook with: `Inputfield::processInput`
+
+### Hooking Before
+
+~~~~~
+$this->addHookBefore('Inputfield::processInput', function(HookEvent $event) {
+  $inputfield = $event->object;
+
+  // Get arguments
+  $input = $event->arguments(0);
+
+  // Your code here
+
+  // Optionally change arguments
+  $event->arguments(0, $input);
+});
+~~~~~
+
+### Hooking After
+
+~~~~~
+$this->addHookAfter('Inputfield::processInput', function(HookEvent $event) {
+  $inputfield = $event->object;
+
+  // Get arguments
+  $input = $event->arguments(0);
+
+  // Your code here
+
+  // Optionally modify return value
+  $return = $event->return;
+  $event->return = $return;
+});
+~~~~~

@@ -1,0 +1,37 @@
+# $functionsAPI->sanitizer($name = '', $value = ''): Sanitizer|string|int|array|null|mixed
+
+Source: `wire/core/FunctionsAPI.php`
+
+Sanitize variables and related string functions ($sanitizer API variable as a function)
+
+This behaves the same as the `$sanitizer` API variable but supports arguments as optional shortcuts.
+
+## Example
+
+~~~~~
+$clean = sanitizer()->pageName($dirty); // regular syntax
+$clean = sanitizer('pageName', $dirty); // shortcut syntax
+~~~~~
+
+## Usage
+
+~~~~~
+// basic usage
+$sanitizer = $functionsAPI->sanitizer();
+
+// usage with all arguments
+$sanitizer = $functionsAPI->sanitizer($name = '', $value = '');
+~~~~~
+
+## Arguments
+
+- `$name` (optional) `string` Optionally enter a sanitizer function name
+- `$value` (optional) `string` If $name populated, enter the value to sanitize
+
+## Return value
+
+- `Sanitizer|string|int|array|null|mixed`
+
+## See Also
+
+- Sanitizer

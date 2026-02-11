@@ -1,0 +1,27 @@
+# $inputfieldTinyMCE->configurable($set = null): bool
+
+Source: `wire/modules/Inputfield/InputfieldTinyMCE/InputfieldTinyMCE.module.php`
+
+Get or set configurable state
+
+- True if Inputfield is configurable (default state).
+- False if it is required that another field be used ($settingsField) to pull settings from.
+- Note this is completely unrelated to the $configName property.
+
+## Usage
+
+~~~~~
+// basic usage
+$bool = $inputfieldTinyMCE->configurable();
+
+// usage with all arguments
+$bool = $inputfieldTinyMCE->configurable($set = null);
+~~~~~
+
+## Arguments
+
+- `$set` (optional) `bool`
+
+## Return value
+
+- `bool`

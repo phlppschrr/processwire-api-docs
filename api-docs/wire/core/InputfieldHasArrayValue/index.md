@@ -1,0 +1,7 @@
+# InputfieldHasArrayValue
+
+Source: `wire/core/Interfaces.php`
+
+## Summary
+
+Inputfields that implement this interface always have a `$value` attribute that is an array

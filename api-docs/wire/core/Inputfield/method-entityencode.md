@@ -1,0 +1,27 @@
+# $inputfield->entityEncode($str, $markdown = false): string
+
+Source: `wire/core/Inputfield.php`
+
+Entity encode a string with optional Markdown support.
+
+- Markdown support provided with second argument.
+- If string is already entity-encoded it will first be decoded.
+
+## Usage
+
+~~~~~
+// basic usage
+$string = $inputfield->entityEncode($str);
+
+// usage with all arguments
+$string = $inputfield->entityEncode($str, $markdown = false);
+~~~~~
+
+## Arguments
+
+- `$str` `string` String to encode
+- `$markdown` (optional) `bool|int` Optionally specify one of the following: - `true` (boolean): To allow Markdown using default "textFormat" setting (which is basic Markdown by default). - `false` (boolean): To disallow Markdown support (this is the default when $markdown argument omitted). - `Inputfield::textFormatNone` (constant): Disallow Markdown support (default). - `Inputfield::textFormatBasic` (constant): To support basic/inline Markdown. - `Inputfield::textFormatMarkdown` (constant): To support full Markdown and HTML.
+
+## Return value
+
+- `string` Entity encoded string or HTML string

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://context7.com/schema/context7.json",
+  "projectTitle": "ProcessWire API Docs",
+  "description": "Unofficial auto-generated ProcessWire API docs in LLM-friendly Markdown format.",
+  "folders": [
+    "api-docs"
+  ],
+  "excludeFiles": [
+    "LICENSE",
+    "NOTICE",
+    "_processwire_version.json"
+  ]
+}

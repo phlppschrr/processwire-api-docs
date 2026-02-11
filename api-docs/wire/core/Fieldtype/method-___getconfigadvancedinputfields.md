@@ -1,0 +1,70 @@
+# $fieldtype->getConfigAdvancedInputfields(Field $field): InputfieldWrapper
+
+Source: `wire/core/Fieldtype.php`
+
+Get Inputfields for advanced settings of the Field and Fieldtype
+
+Inputfields returned from this appear under the "Advanced" tab rather than the "Details" tab,
+in the Field editor.
+
+In most cases, you will want to implement the getConfigInputfields() or getConfigArray() rather than this method.
+
+NOTE: Inputfields with a name that starts with an underscore, i.e. "_myname" are assumed to be for runtime
+use and are NOT stored in the database.
+
+## Usage
+
+~~~~~
+// basic usage
+$inputfieldWrapper = $fieldtype->getConfigAdvancedInputfields($field);
+
+// usage with all arguments
+$inputfieldWrapper = $fieldtype->getConfigAdvancedInputfields(Field $field);
+~~~~~
+
+## Arguments
+
+- `$field` `Field`
+
+## Return value
+
+- `InputfieldWrapper`
+
+## Hooking
+
+- Hookable method name: `getConfigAdvancedInputfields`
+- Implementation: `___getConfigAdvancedInputfields`
+- Hook with: `Fieldtype::getConfigAdvancedInputfields`
+
+### Hooking Before
+
+~~~~~
+$this->addHookBefore('Fieldtype::getConfigAdvancedInputfields', function(HookEvent $event) {
+  $fieldtype = $event->object;
+
+  // Get arguments
+  $field = $event->arguments(0);
+
+  // Your code here
+
+  // Optionally change arguments
+  $event->arguments(0, $field);
+});
+~~~~~
+
+### Hooking After
+
+~~~~~
+$this->addHookAfter('Fieldtype::getConfigAdvancedInputfields', function(HookEvent $event) {
+  $fieldtype = $event->object;
+
+  // Get arguments
+  $field = $event->arguments(0);
+
+  // Your code here
+
+  // Optionally modify return value
+  $return = $event->return;
+  $event->return = $return;
+});
+~~~~~

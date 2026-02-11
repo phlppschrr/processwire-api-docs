@@ -1,0 +1,71 @@
+# $page->cloneReady(Page $copy)
+
+Source: `wire/core/Page.php`
+
+Called right before this page is cloned
+
+## Example
+
+~~~~~
+$wire->addHook('Page::cloneReady', function($e) {
+ $page = $e->object;
+ $e->log->message("Page $page is ready to be cloned");
+});
+~~~~~
+
+## Usage
+
+~~~~~
+// basic usage
+$result = $page->cloneReady($copy);
+
+// usage with all arguments
+$result = $page->cloneReady(Page $copy);
+~~~~~
+
+## Arguments
+
+- `$copy` `Page` The copy of this page that it will be cloned to
+
+## Hooking
+
+- Hookable method name: `cloneReady`
+- Implementation: `___cloneReady`
+- Hook with: `Page::cloneReady`
+
+### Hooking Before
+
+~~~~~
+$this->addHookBefore('Page::cloneReady', function(HookEvent $event) {
+  $page = $event->object;
+
+  // Get arguments
+  $copy = $event->arguments(0);
+
+  // Your code here
+
+  // Optionally change arguments
+  $event->arguments(0, $copy);
+});
+~~~~~
+
+### Hooking After
+
+~~~~~
+$this->addHookAfter('Page::cloneReady', function(HookEvent $event) {
+  $page = $event->object;
+
+  // Get arguments
+  $copy = $event->arguments(0);
+
+  // Your code here
+
+  // Optionally modify return value
+  $return = $event->return;
+  $event->return = $return;
+});
+~~~~~
+
+## Since
+
+3.0.253

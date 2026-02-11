@@ -1,0 +1,18 @@
+# $field->__debugInfo(): array
+
+Source: `wire/core/Field.php`
+
+debugInfo PHP 5.6+ magic method
+
+This is used when you print_r() an object instance.
+
+## Usage
+
+~~~~~
+// basic usage
+$array = $field->__debugInfo();
+~~~~~
+
+## Return value
+
+- `array`

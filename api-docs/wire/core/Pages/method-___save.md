@@ -1,0 +1,90 @@
+# $pages->save(Page $page, $options = array()): bool
+
+Source: `wire/core/Pages.php`
+
+Save a page object and its fields to database.
+
+If the page is new, it will be inserted. If existing, it will be updated.
+This is the same as calling `$page->save()`. If you want to just save a particular field
+in a Page, use `$page->save($fieldName)` instead.
+
+## Example
+
+~~~~~~
+// Modify a page and save it
+$p = $pages->get('/festivals/decatur/beer/');
+$p->of(false); // turn off output formatting, if it's on
+$p->title = "Decatur Beer Festival";
+$p->summary = "Come and enjoy fine beer and good company at the Decatur Beer Festival.";
+$pages->save($p);
+~~~~~~
+
+## Usage
+
+~~~~~
+// basic usage
+$bool = $pages->save($page);
+
+// usage with all arguments
+$bool = $pages->save(Page $page, $options = array());
+~~~~~
+
+## Arguments
+
+- `$page` `Page` Page object to save
+- `$options` (optional) `array` Optional array to modify default behavior, with one or more of the following: - `uncacheAll` (boolean): Whether the memory cache should be cleared (default=true). - `resetTrackChanges` (boolean): Whether the page's change tracking should be reset (default=true). - `quiet` (boolean): When true, modified date and modified_users_id won't be updated (default=false). - `adjustName` (boolean): Adjust page name to ensure it is unique within its parent (default=true). - `forceID` (integer): Use this ID instead of an auto-assigned one (new page) or current ID (existing page). - `ignoreFamily` (boolean): Bypass check of allowed family/parent settings when saving (default=false). - `noHooks` (boolean): Prevent before/after save hooks (default=false), please also use $pages->___save() for call. - `noFields` (boolean): Bypass saving of custom fields, leaving only native properties to be saved (default=false).
+
+## Return value
+
+- `bool` True on success, false on failure
+
+## Hooking
+
+- Hookable method name: `save`
+- Implementation: `___save`
+- Hook with: `Pages::save`
+
+### Hooking Before
+
+~~~~~
+$this->addHookBefore('Pages::save', function(HookEvent $event) {
+  $pages = $event->object;
+
+  // Get arguments
+  $page = $event->arguments(0);
+  $options = $event->arguments(1);
+
+  // Your code here
+
+  // Optionally change arguments
+  $event->arguments(0, $page);
+  $event->arguments(1, $options);
+});
+~~~~~
+
+### Hooking After
+
+~~~~~
+$this->addHookAfter('Pages::save', function(HookEvent $event) {
+  $pages = $event->object;
+
+  // Get arguments
+  $page = $event->arguments(0);
+  $options = $event->arguments(1);
+
+  // Your code here
+
+  // Optionally modify return value
+  $return = $event->return;
+  $event->return = $return;
+});
+~~~~~
+
+## Exceptions
+
+- `WireException`
+
+## See Also
+
+- [Page::save()](../Page/method-save.md)
+- [Pages::saveField()](method-___savefield.md)

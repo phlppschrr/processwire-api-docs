@@ -1,0 +1,66 @@
+# $pagesType->add($name): Page|NullPage
+
+Source: `wire/core/PagesType.php`
+
+Adds a new page with the given $name and returns it
+
+- If the page has any other fields, they will not be populated, only the name will.
+- Returns a `NullPage` on error, such as when a page of this type already exists with the same name/parent.
+
+Hook note:
+If you want to hook this method, please hook the `addReady`, `Pages::add`, or `Pages::addReady` method
+instead, as hooking this method will not hook relevant pages added directly through $pages->add().
+
+## Usage
+
+~~~~~
+// basic usage
+$page = $pagesType->add($name);
+~~~~~
+
+## Arguments
+
+- `$name` `string` Name to use for the new page
+
+## Return value
+
+- `Page|NullPage`
+
+## Hooking
+
+- Hookable method name: `add`
+- Implementation: `___add`
+- Hook with: `PagesType::add`
+
+### Hooking Before
+
+~~~~~
+$this->addHookBefore('PagesType::add', function(HookEvent $event) {
+  $pagesType = $event->object;
+
+  // Get arguments
+  $name = $event->arguments(0);
+
+  // Your code here
+
+  // Optionally change arguments
+  $event->arguments(0, $name);
+});
+~~~~~
+
+### Hooking After
+
+~~~~~
+$this->addHookAfter('PagesType::add', function(HookEvent $event) {
+  $pagesType = $event->object;
+
+  // Get arguments
+  $name = $event->arguments(0);
+
+  // Your code here
+
+  // Optionally modify return value
+  $return = $event->return;
+  $event->return = $return;
+});
+~~~~~

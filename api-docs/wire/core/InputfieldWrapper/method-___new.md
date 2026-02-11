@@ -1,0 +1,86 @@
+# $inputfieldWrapper->new($typeName, $name = '', $label = '', $settings = array()): Inputfield|InputfieldSelect|InputfieldWrapper
+
+Source: `wire/core/InputfieldWrapper.php`
+
+Create a new Inputfield, add it to this InputfieldWrapper, and return the new Inputfield
+
+- Only the $typeName argument is required.
+- You may optionally substitute the $settings argument for the $name or $label arguments.
+- You may optionally substitute Inputfield “description” property for $settings argument.
+
+## Usage
+
+~~~~~
+// basic usage
+$inputfield = $inputfieldWrapper->new($typeName);
+
+// usage with all arguments
+$inputfield = $inputfieldWrapper->new($typeName, $name = '', $label = '', $settings = array());
+~~~~~
+
+## Arguments
+
+- `$typeName` `string` Inputfield type, i.e. “InputfieldCheckbox” or just “checkbox” for short.
+- `$name` (optional) `string|array` Name of input (or substitute $settings here).
+- `$label` (optional) `string|array` Label for input (or substitute $settings here).
+- `$settings` (optional) `array|string` Settings to add to Inputfield (optional). Or if string, assumed to be “description”.
+
+## Return value
+
+- `Inputfield|InputfieldSelect|InputfieldWrapper` An Inputfield instance ready to populate with additional properties/attributes.
+
+## Hooking
+
+- Hookable method name: `new`
+- Implementation: `___new`
+- Hook with: `InputfieldWrapper::new`
+
+### Hooking Before
+
+~~~~~
+$this->addHookBefore('InputfieldWrapper::new', function(HookEvent $event) {
+  $inputfieldWrapper = $event->object;
+
+  // Get arguments
+  $typeName = $event->arguments(0);
+  $name = $event->arguments(1);
+  $label = $event->arguments(2);
+  $settings = $event->arguments(3);
+
+  // Your code here
+
+  // Optionally change arguments
+  $event->arguments(0, $typeName);
+  $event->arguments(1, $name);
+  $event->arguments(2, $label);
+  $event->arguments(3, $settings);
+});
+~~~~~
+
+### Hooking After
+
+~~~~~
+$this->addHookAfter('InputfieldWrapper::new', function(HookEvent $event) {
+  $inputfieldWrapper = $event->object;
+
+  // Get arguments
+  $typeName = $event->arguments(0);
+  $name = $event->arguments(1);
+  $label = $event->arguments(2);
+  $settings = $event->arguments(3);
+
+  // Your code here
+
+  // Optionally modify return value
+  $return = $event->return;
+  $event->return = $return;
+});
+~~~~~
+
+## Exceptions
+
+- `WireException` If you request an unknown Inputfield type
+
+## Since
+
+3.0.110

@@ -1,0 +1,12 @@
+# $databaseQuerySelectFulltext->matchIsEmpty()
+
+Source: `wire/core/DatabaseQuerySelectFulltext.php`
+
+Match is an empty empty string, null or not present
+
+## Usage
+
+~~~~~
+// basic usage
+$result = $databaseQuerySelectFulltext->matchIsEmpty();
+~~~~~

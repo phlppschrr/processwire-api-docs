@@ -1,0 +1,61 @@
+# $processPageSearchLive->getDefaultPageSearchFields(): array
+
+Source: `wire/modules/Process/ProcessPageSearch/ProcessPageSearchLive.php`
+
+Get the names of fields that should be used when searching pages
+
+Hook this from /site/templates/admin.php to modify what gets searched.
+This overrides the setting specified interactively in the ProcessPageSearch module settings.
+
+## Example
+
+~~~~~
+$wire->addHookAfter('ProcessPageSearchLive::getDefaultPageSearchFields', function(HookEvent $e) {
+  $e->return = [ 'title', 'subtitle', 'categories.title' ];
+});
+~~~~~
+
+## Usage
+
+~~~~~
+// basic usage
+$array = $processPageSearchLive->getDefaultPageSearchFields();
+~~~~~
+
+## Return value
+
+- `array`
+
+## Hooking
+
+- Hookable method name: `getDefaultPageSearchFields`
+- Implementation: `___getDefaultPageSearchFields`
+- Hook with: `ProcessPageSearchLive::getDefaultPageSearchFields`
+
+### Hooking Before
+
+~~~~~
+$this->addHookBefore('ProcessPageSearchLive::getDefaultPageSearchFields', function(HookEvent $event) {
+  $processPageSearchLive = $event->object;
+
+  // Your code here
+});
+~~~~~
+
+### Hooking After
+
+~~~~~
+$this->addHookAfter('ProcessPageSearchLive::getDefaultPageSearchFields', function(HookEvent $event) {
+  $processPageSearchLive = $event->object;
+
+  // Your code here
+
+  // Optionally modify return value
+  $return = $event->return;
+  $event->return = $return;
+});
+~~~~~
+
+## Since
+
+3.0.242

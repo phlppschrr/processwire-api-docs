@@ -1,0 +1,27 @@
+# $pagesNames->pageNameExists($name, array $options = array()): int
+
+Source: `wire/core/PagesNames.php`
+
+Is the given name is use by a page?
+
+If the `multilang` option is used, it checks if the page name exists in any language.
+IF the `language` option is used, it only checks that particular language (regardless of `multilang` option).
+
+## Usage
+
+~~~~~
+// basic usage
+$int = $pagesNames->pageNameExists($name);
+
+// usage with all arguments
+$int = $pagesNames->pageNameExists($name, array $options = array());
+~~~~~
+
+## Arguments
+
+- `$name` `string`
+- `$options` (optional) `array` - `page` (Page|int): Ignore this Page or page ID - `parent` (Page|int): Limit search to only this parent. - `multilang` (bool): Check other languages if multi-language page names supported? (default=false) - `language` (Language|int): Limit check to only this language (default=null)
+
+## Return value
+
+- `int` Returns quantity of pages using name, or 0 if name not in use.
